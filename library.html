@@ -59,14 +59,13 @@
   }
   ];
 
-  // var titleinput = $().val();
-  // var authorinput = $().val();
-  // var statusinput = $().val();
+var renderLibrary = function () {
   for (var b = 0; b < books.length; b++) {
     newLibHtml = libTemplate(books[b]);
     $('#library').append(newLibHtml);
   }
-
+};
+renderLibrary(books);
 </script>
 
 <small>It's back.</small>
