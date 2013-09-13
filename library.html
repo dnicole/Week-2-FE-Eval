@@ -23,16 +23,50 @@
 <h1>THE LIBRARY</h1>
 
 
-<div id="library"></div>
+<div id="library">
+</div>
 
 <div id="templates">
-
+  <script class="library" type="text/template">
+    <div class="library book">
+      <h3><%= title %></h3>
+      <h5><%= author %></h5>
+      <p><%= status %></p>
+    </div>
+  </script>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 <script type="text/javascript">
-  // TODO
+  var libTemplateHtml = $('#templates .library').html();
+  var libTemplate = _.template(libTemplateHtml);
+  var newLibHtml;
+  var books = [{
+    title: 'Snow Crash',
+    author: 'Neal Stephenson',
+    status: 'available'
+  },
+  {
+    title: 'The Menace From Earth',
+    author: 'Robert Heinlein',
+    status: 'available'
+  },
+  {
+    title: 'Cyberiad',
+    author: 'Lem',
+    status: 'available'
+  }
+  ];
+
+  // var titleinput = $().val();
+  // var authorinput = $().val();
+  // var statusinput = $().val();
+  for (var b = 0; b < books.length; b++) {
+    newLibHtml = libTemplate(books[b]);
+    $('#library').append(newLibHtml);
+  }
+
 </script>
 
 <small>It's back.</small>
