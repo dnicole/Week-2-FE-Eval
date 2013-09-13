@@ -16,15 +16,35 @@
     #library .book h5 {
       font-weight: normal;
     }
+    #newbook {
+      width: 240px;
+      float: left;
+      clear: both;
+    }
+    .clearfix:before, .clearfix:after {
+      content: " ";
+      display: table;
+    }
+    .clearfix:after {
+      clear: both;
+    }
   </style>
 </head>
 <body>
 
 <h1>THE LIBRARY</h1>
 
-
-<div id="library">
+<div id="newbook" class="clearfix">
+  <label>Book title here:</label>
+  <input id="user-input" type="text" />
+  <br />
+  <label>Author:</label>
+  <input id="user-input2" type="text" />
+  <br />
+  <input id="submit-button" type="button" value="Add to Library" />
 </div>
+
+<div id="library" class="clearfix"></div>
 
 <div id="templates">
   <script class="library" type="text/template">
@@ -39,6 +59,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 <script type="text/javascript">
+  // Directs from for loop to library template to 
+  // fill page with books from array.
   var libTemplateHtml = $('#templates .library').html();
   var libTemplate = _.template(libTemplateHtml);
   var newLibHtml;
@@ -66,6 +88,14 @@ var renderLibrary = function () {
   }
 };
 renderLibrary(books);
+
+$('#submit-button').on('click', function(){
+    var titleinput = $('#user-input').val();
+    var authorinput = $('#user-input2').val();
+    var statusnew = "available"
+    var newLibHtml = libTemplate({title: titleinput, author: authorinput, status: statusnew});
+    $('#library').append(newLibHtml);
+  });
 </script>
 
 <small>It's back.</small>
